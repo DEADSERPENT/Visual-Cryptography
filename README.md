@@ -21,7 +21,7 @@ Visual Cryptography is an encryption technique that allows for the secure transm
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/yourusername/visual-cryptography.git
+    git clone https://github.com/DEADSERPENT/visual-cryptography.git
     ```
 2. Navigate to the project directory:
     ```bash
