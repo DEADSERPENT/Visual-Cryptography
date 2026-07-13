@@ -38,22 +38,49 @@ Visual Cryptography is an encryption technique that allows for the secure transm
     ```bash
     python main.py
     ```
-2. Follow the on-screen instructions to upload an image, choose encryption parameters, and generate encrypted shares.
+2. Choose an option from the menu:
 
-3. To decrypt, upload the necessary shares and follow the instructions to reconstruct the original image.
+    | Option | Scheme | Action |
+    | ------ | ------ | ------ |
+    | 1 / 2  | Grayscale (XOR) | Encrypt into shares / Decrypt shares |
+    | 3 / 4  | Colour (Modular Arithmetic) | Encrypt into shares / Decrypt shares |
+    | 5 / 6  | AES-VC (AES-256 + share-based key) | Encrypt / Decrypt |
+
+3. Follow the on-screen prompts to provide an image path (for encryption) or a
+   folder of shares (for decryption). Generated shares and reconstructions are
+   written to the `output/` directory.
 
 ## Examples
 
+Sample images are provided in the `Example imges/` folder.
+
 ### Encrypting an Image
 
-1. Upload an image file.
-2. Choose the number of shares and threshold.
-3. Generate and save the encrypted shares.
+1. Start `python main.py` and pick option **1** (grayscale) or **3** (colour).
+2. Enter the path to your image, e.g. `Example imges/spectre logo.png`.
+3. Choose the number of shares (2–8); the shares and a reconstructed preview are
+   saved under `output/`.
 
 ### Decrypting an Image
 
-1. Upload the required number of shares.
-2. Combine the shares to reconstruct the original image.
+1. Start `python main.py` and pick option **2** (grayscale) or **4** (colour).
+2. Enter the folder that contains the generated share images
+   (`XOR_Share_*.png` or `MA_Share_*.png`).
+3. The original image is reconstructed and saved as `Reconstructed_Image.png`
+   in that folder.
+
+## Project Structure
+
+```
+main.py                     # Unified menu-driven entry point
+requirements.txt            # Python dependencies
+Example imges/              # Sample input images
+Visual-Cryptography-main/
+├── Grayscale Images/       # XOR-based (n, n) scheme + metrics
+├── Colour Images/          # Modular-arithmetic (n, n) scheme + metrics
+├── AES-VC/                 # AES-256 + visual-cryptography key sharing
+└── utils/                  # PSNR / normalised cross-correlation helpers
+```
 
 ## Contributing
 
